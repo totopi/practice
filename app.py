@@ -46,14 +46,14 @@ def callback_handling():
 
 @app.route('/login')
 def login():
-    return auth0.authorize_redirect(redirect_uri='http://practicehelper.heroku.com/callback', audience='https://gigdb.auth0.com/userinfo')
+    return auth0.authorize_redirect(redirect_uri='https://practicehelper.heroku.com/callback', audience='https://gigdb.auth0.com/userinfo')
 
 def requires_auth(f):
   @wraps(f)
   def decorated(*args, **kwargs):
     if 'profile' not in session:
       # Redirect to Login page here
-      return redirect('/login')
+      return redirect('/')
     return f(*args, **kwargs)
 
   return decorated
@@ -61,16 +61,16 @@ def requires_auth(f):
 @app.route('/dashboard')
 @requires_auth
 def dashboard():
-    return render_template('dashboard.html',
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+    return render_template('dashboard.html')#,
+                        #    userinfo=session['profile'],
+                        #    userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
 @app.route('/logout')
 def logout():
     # Clear session stored data
     session.clear()
     # Redirect user to logout endpoint
-    params = {'returnTo': 'https://practicehelper.heroku.com/'}
+    params = {'returnTo': url_for('home', _external=True), 'client_id': 'LC14lzbQwLdWWmHvP3Rr99n4miC592E0'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
 
 @app.route('/')
