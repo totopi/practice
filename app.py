@@ -24,6 +24,15 @@ auth0 = oauth.register(
     },
 )
 
+def requires_auth(f):
+  @wraps(f)
+  def decorated(*args, **kwargs):
+    if 'profile' not in session:
+      # Redirect to Login page here
+      return redirect('/')
+    return f(*args, **kwargs)
+
+  return decorated
 
 # /server.py
 
@@ -48,16 +57,6 @@ def callback_handling():
 @app.route('/login')
 def login():
     return auth0.authorize_redirect(redirect_uri='https://practicehelper.heroku.com/callback', audience='https://gigdb.auth0.com/userinfo')
-
-def requires_auth(f):
-  @wraps(f)
-  def decorated(*args, **kwargs):
-    if 'profile' not in session:
-      # Redirect to Login page here
-      return redirect('/')
-    return f(*args, **kwargs)
-
-  return decorated
 
 @app.route('/dashboard')
 @requires_auth
