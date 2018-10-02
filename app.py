@@ -37,7 +37,6 @@ def requires_auth(f):
 # /server.py
 
 # Here we're using the /callback route.
-@requires_auth
 @app.route('/callback')
 def callback_handling():
     # Handles response from token endpoint
