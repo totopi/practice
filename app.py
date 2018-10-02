@@ -42,7 +42,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-    return redirect('/dashboard')
+    return redirect('https://practicehelper.heroku.com/dashboard')
 
 @app.route('/login')
 def login():
