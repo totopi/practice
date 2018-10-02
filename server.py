@@ -9,13 +9,13 @@ from authlib.flask.client import OAuth
 from six.moves.urllib.parse import urlencode
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'C8L0unc6Tf1WBkMUsXkiUiVYp6Fb_BGS9rFgyMAH_C5KPlIUncFQsApkilywuHhM'
+app.config['SECRET_KEY'] = env['AUTH_SECRET']
 oauth = OAuth(app)
 
 auth0 = oauth.register(
     'auth0',
-    client_id='LC14lzbQwLdWWmHvP3Rr99n4miC592E0',
-    client_secret='C8L0unc6Tf1WBkMUsXkiUiVYp6Fb_BGS9rFgyMAH_C5KPlIUncFQsApkilywuHhM',
+    client_id=env['AUTH_CLIENT'],
+    client_secret=env['AUTH_SECRET'],
     api_base_url='https://gigdb.auth0.com',
     access_token_url='https://gigdb.auth0.com/oauth/token',
     authorize_url='https://gigdb.auth0.com/authorize',

@@ -1,0 +1,16 @@
+authlib==0.9
+beautifulsoup4==4.6.0
+Flask==0.12.2
+Flask-Cors==3.0.3
+Flask-PyMongo==0.5.1
+html5lib==0.999999999
+lxml==4.1.0
+numpy==1.13.3
+numpydoc==0.7.0
+pandas==0.20.3
+pandocfilters==1.4.2
+PyMySQL==0.8.0
+selenium==3.11.0
+splinter==0.7.7
+gunicorn==19.7.1
+Jinja2==2.10
