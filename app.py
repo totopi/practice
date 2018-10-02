@@ -70,7 +70,7 @@ def logout():
     # Clear session stored data
     session.clear()
     # Redirect user to logout endpoint
-    params = {'returnTo': url_for('home', _external=True), 'client_id': 'LC14lzbQwLdWWmHvP3Rr99n4miC592E0'}
+    params = {'returnTo': 'https://practicehelper.heroku.com/'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
 
 @app.route('/')
