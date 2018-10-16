@@ -27,7 +27,7 @@ auth0 = oauth.register(
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 # /server.py
 
